@@ -8,8 +8,8 @@ using TravelApi.Models;
 namespace TravelApi.Migrations
 {
     [DbContext(typeof(TravelApiContext))]
-    [Migration("20220815211420_SeedData")]
-    partial class SeedData
+    [Migration("20220815221343_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,13 +25,22 @@ namespace TravelApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4");
 
                     b.Property<string>("State")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4");
 
                     b.HasKey("DestinationId");
 
@@ -42,6 +51,7 @@ namespace TravelApi.Migrations
                         {
                             DestinationId = 1,
                             Country = "United States",
+                            Description = "Built in the 1960s for the world fair",
                             Name = "Space Needle",
                             State = "Washington"
                         },
@@ -49,6 +59,7 @@ namespace TravelApi.Migrations
                         {
                             DestinationId = 2,
                             Country = "United States",
+                            Description = "Home of the trailblazers",
                             Name = "Portland",
                             State = "Oregon"
                         },
@@ -56,6 +67,7 @@ namespace TravelApi.Migrations
                         {
                             DestinationId = 3,
                             Country = "Canada",
+                            Description = "Canada's Seattle",
                             Name = "Vancouver",
                             State = "British Columbia"
                         });

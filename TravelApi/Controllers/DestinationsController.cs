@@ -21,7 +21,7 @@ namespace TravelApi.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string state, string country)
+    public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string state, string country, string description)
     {
       var query = _db.Destinations.AsQueryable();
 
@@ -36,6 +36,10 @@ namespace TravelApi.Controllers
       if (country != null)
       {
         query = query.Where(entry => entry.Country == country);
+      }
+       if (description != null)
+      {
+        query = query.Where(entry => entry.Description == description);
       }
 
       return await query.ToListAsync();
@@ -93,11 +97,6 @@ namespace TravelApi.Controllers
       return NoContent();
     }
 
-    private bool DestinationExists(int id)    
-    {
-      return _db.Destinations.Any(e => e.DestinationId == id);
-    }
-
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteDestination(int id)
     {
@@ -111,6 +110,11 @@ namespace TravelApi.Controllers
       await _db.SaveChangesAsync();
 
       return NoContent();
+    }
+
+    private bool DestinationExists(int id)    
+    {
+      return _db.Destinations.Any(e => e.DestinationId == id);
     }
   }
 }
