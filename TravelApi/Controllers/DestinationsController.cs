@@ -21,7 +21,7 @@ namespace TravelApi.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string state, string country, string description)
+    public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string state, string country, string description, int minRating)
     {
       var query = _db.Destinations.AsQueryable();
 
@@ -40,6 +40,11 @@ namespace TravelApi.Controllers
        if (description != null)
       {
         query = query.Where(entry => entry.Description == description);
+      }
+
+      if (minRating > 0)
+      {
+        query = query.Where(entry => entry.Rating == minRating);
       }
 
       return await query.ToListAsync();
