@@ -17,5 +17,6 @@ namespace TravelApi.Models
         [StringLength(300, ErrorMessage = "Description must be less than 300 characters")]
         public string Description { get; set; }
         // public int Age { get; set; }
+
     }
 }
