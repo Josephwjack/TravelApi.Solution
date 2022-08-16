@@ -10,6 +10,7 @@ using TravelApi.Models;
 namespace TravelApi.Controllers
 {
   [Route("api/[controller]")]
+  [Produces("application/json")]
   [ApiController]
   public class DestinationsController : ControllerBase
   {
@@ -78,7 +79,7 @@ namespace TravelApi.Controllers
         return destination;
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id}")] 
     public async Task<IActionResult> Put(int id, Destination destination)
     {
       if (id != destination.DestinationId)
@@ -107,6 +108,11 @@ namespace TravelApi.Controllers
       return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a specific destination.
+    /// </summary>
+    /// <param name="id"></param>
+    // DELETE api/destinations/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteDestination(int id)
     {
