@@ -99,6 +99,7 @@ namespace TravelApi.Controllers
         {
           return NotFound();
         }
+        
         else
         {
           throw;
