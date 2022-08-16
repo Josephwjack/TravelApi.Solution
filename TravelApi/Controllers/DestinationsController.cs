@@ -76,7 +76,7 @@ namespace TravelApi.Controllers
     }
 
     [HttpPut("{id}")] 
-    public async Task<IActionResult> Put(int id, Destination destination)
+    public async Task<IActionResult> Put(int id, [FromBody] Destination destination)
     {
       if (id != destination.DestinationId)
       {
