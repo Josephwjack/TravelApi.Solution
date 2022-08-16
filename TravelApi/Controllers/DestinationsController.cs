@@ -21,7 +21,7 @@ namespace TravelApi.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string state, string country, string description, int minRating)
+    public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string state, string country, string description, int minRating, string userName)
     {
       var query = _db.Destinations.AsQueryable();
 
@@ -47,10 +47,15 @@ namespace TravelApi.Controllers
         query = query.Where(entry => entry.Rating == minRating);
       }
 
+      if (userName != null)
+      {
+        query = query.Where(entry => entry.UserName == userName);
+      }
+
       return await query.ToListAsync();
     }
 
-    // POST api/animals
+   
     [HttpPost]
     public async Task<ActionResult<Destination>> Post(Destination destination)
     {
