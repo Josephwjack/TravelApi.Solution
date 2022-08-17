@@ -34,7 +34,7 @@ namespace TravelApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            
+            services.AddCors();
             services.AddDbContext<TravelApiContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
@@ -76,7 +76,7 @@ namespace TravelApi
                 options.RequireHttpsMetadata = false;  
                 options.TokenValidationParameters = new TokenValidationParameters()  
                 {  
-                    ValidateIssuer = true,  
+                    ValidateIssuer = false,  
                     ValidateAudience = true,  
                     ValidAudience = Configuration["JWT:ValidAudience"],  
                     ValidIssuer = Configuration["JWT:ValidIssuer"],  
@@ -135,10 +135,10 @@ namespace TravelApi
             });
 
             // global cors policy
-            // app.UseCors(x => x
-            //     .AllowAnyOrigin()
-            //     .AllowAnyMethod()
-            //     .AllowAnyHeader());
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
         }
     }
 }

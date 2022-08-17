@@ -21,9 +21,9 @@ namespace TravelApi.Controllers
     {
       _db = db;
     }
-
+    [AllowAnonymous]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Destination>>> Get(string name, string state, string country, string description, int minRating)
+    public async Task<ActionResult<IEnumerable<Destination>>> GetDestinations(string name, string state, string country, string description, int minRating)
     {
       var query = _db.Destinations.AsQueryable();
 
