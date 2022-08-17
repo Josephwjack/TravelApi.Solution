@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 
+
 namespace TravelApi.Models
 {
     public class TravelApiContext : DbContext
@@ -11,7 +12,7 @@ namespace TravelApi.Models
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        
         public DbSet<Destination> Destinations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -23,11 +24,7 @@ namespace TravelApi.Models
             new Destination { DestinationId = 3, Name = "Vancouver", State = "British Columbia", Country = "Canada", Description = "Canada's Seattle", Rating = 7 }
           );
 
-          builder.Entity<User>()
-          .HasData(
-            new User { Id = 1, Username = "Joe", Password = "test"},
-            new User { Id = 2, Username = "Matt", Password = "test"}
-          );
+          
         }
     }
 }

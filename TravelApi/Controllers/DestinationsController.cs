@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravelApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TravelApi.Controllers
 {
@@ -74,7 +75,7 @@ namespace TravelApi.Controllers
 
         return destination;
     }
-
+    [Authorize]
     [HttpPut("{id}")] 
     public async Task<IActionResult> Put(int id, [FromBody] Destination destination)
     {
@@ -110,6 +111,7 @@ namespace TravelApi.Controllers
     /// </summary>
     /// <param name="id"></param>
     // DELETE api/destinations/5
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteDestination(int id)
     {
