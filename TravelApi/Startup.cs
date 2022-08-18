@@ -76,7 +76,7 @@ namespace TravelApi
                 options.RequireHttpsMetadata = false;  
                 options.TokenValidationParameters = new TokenValidationParameters()  
                 {  
-                    ValidateIssuer = false,  
+                    ValidateIssuer = true,  
                     ValidateAudience = true,  
                     ValidAudience = Configuration["JWT:ValidAudience"],  
                     ValidIssuer = Configuration["JWT:ValidIssuer"],  
@@ -92,6 +92,31 @@ namespace TravelApi
                     Version = "v1",
                     Title = "Travel Api",
                     Description = "A site where users can add entries of destinations visited with description and ratings."
+                });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                  {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                        }
+                    },
+                    new string[]{}
+                  }  
                 });
 
                     // Sets the comments path for swagger json and ui

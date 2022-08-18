@@ -23,10 +23,11 @@ namespace TravelApi.Models
         [Range(0,10)]
         public int Rating { get; set; }
 
-        // [Required]
-        // [StringLength(15)]
-        // public string UserName { get; set; }
-        // // public int Age { get; set; }
+        [Required]
+        [StringLength(15)]
+        public string Username { get; set; }
+
+        
 
     }
 }

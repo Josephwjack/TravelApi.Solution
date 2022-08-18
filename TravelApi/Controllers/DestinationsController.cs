@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace TravelApi.Controllers
 {
   [Route("api/[controller]")]
-  [Produces("application/json")]
   [ApiController]
   public class DestinationsController : ControllerBase
   {
@@ -49,11 +48,12 @@ namespace TravelApi.Controllers
         query = query.Where(entry => entry.Rating == minRating);
       }
 
+      
 
       return await query.ToListAsync();
     }
 
-   
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<Destination>> Post(Destination destination)
     {
@@ -75,6 +75,7 @@ namespace TravelApi.Controllers
 
         return destination;
     }
+
     [Authorize]
     [HttpPut("{id}")] 
     public async Task<IActionResult> Put(int id, [FromBody] Destination destination)
@@ -96,6 +97,7 @@ namespace TravelApi.Controllers
         {
           return NotFound();
         }
+        
         
         else
         {

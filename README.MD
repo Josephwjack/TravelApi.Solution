@@ -2,7 +2,7 @@
 
 #### By _**Joseph Jack** && **Matt Wilkinson**_  
 
-#### _Pierre's Sweet and Savory is an application that allows the user to browse treats and flavors on Pierre's site. However users must register and login to have any create or editing ability._
+#### _A project to introduce practices for building a Web Api and a Client App that consumes it. C#/.NET Core 5.0. Users interact with the Api and database through the localhost on the client app or through Swagger UI. From there users can see lists of destinations and ratings. Additional functionality to edit, post, delete listings. Users must register and login using JWT Tokens to acccess site._
 
 ---
 
@@ -92,18 +92,32 @@ Run ```$ dotnet run``` in the terminal.
 </details>
 <hr/>
 
-## To Use Swagger UI
+## _To Use Swagger UI_
 Add the following to the url of your local host:
 `` http://localhost:5000/swagger``
+* Keep this programs live server running while using the client side live server to achieve full functionality of the project.
 <hr/>
 
 This program was built using *`Microsoft .NET SDK 5.0.401`*, and may not be compatible with other versions. Cross-version performance is neither implied nor guaranteed, your actual mileage may vary.
 
 ---
-## Known Bugs
 
-* _No known issues_
+## _Specs_
 
-## Legal
+|Behavior|Input|Output|
+|-----|-----|-----|
+|User can register an account in Swagger|"username": "test" , "password":  "test"|"api/Authenticate/register"|
+|User can log in and generate bearer token on Swagger UI|Username and password from above|"/api/Authenticate/login"|
+|User can post, edit, or delete entries once logged in|PUT, POST, or DELETE|"api/Destinations/{id}"|
+
+
+
+---
+## _Known Bugs_
+
+* _User interface allowing users to log in and log out is only on swagger, not the client side application._
+* _Have not established roles in authorization to prevent users from deleting entries that are not theirs._
+
+## _Legal_
 
 _Copyright (c) 

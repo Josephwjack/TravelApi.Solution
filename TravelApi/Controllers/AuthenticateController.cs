@@ -87,7 +87,7 @@ namespace JWTAuthentication.Controllers
   
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });  
         }  
-  
+        
         [HttpPost]  
         [Route("register-admin")]  
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)  
