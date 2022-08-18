@@ -62,7 +62,7 @@ namespace TravelApi.Controllers
 
       return CreatedAtAction(nameof(GetDestination), new { id = destination.DestinationId }, destination);
     }
-
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<ActionResult<Destination>> GetDestination(int id)
     {
